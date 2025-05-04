@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Enharmonica.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Enharmonica.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="Enharmonica">
+
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+    <ShellContent Title="Scales" ContentTemplate="{DataTemplate local:ScalesPage}" Route="ScalesPage"/>
+    <ShellContent Title="Chords" ContentTemplate="{DataTemplate local:ChordsPage}" Route="ChordsPage"/>
+    <ShellContent Title="Metronome" ContentTemplate="{DataTemplate local:MetronomePage}" Route="MetronomePage"/>
+    <ShellContent Title="Pitch Detection" ContentTemplate="{DataTemplate local:PitchDetectionPage}" Route="PitchDetectionPage"/>
+
+
+</Shell>

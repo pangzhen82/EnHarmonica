@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Enharmonica.Views"
+             x:Class="Enharmonica.Views.ChordsPage"
+             Title="Chords">
+    <Grid Padding="20" RowSpacing="10">
+        <!-- Row Definitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Label -->
+            <RowDefinition Height="Auto" />
+            <!-- Row 1 Pickers -->
+            <RowDefinition Height="Auto" />
+            <!-- Row 2 Pickers -->
+            <RowDefinition Height="*" />
+            <!-- Chord Display -->
+            <RowDefinition Height="*" />
+            <!-- Explanation for details -->
+            <RowDefinition Height="Auto" />
+            <!-- Buttons -->
+        </Grid.RowDefinitions>
+
+
+        <!-- Title -->
+        <Label Text="Chord Generator"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="Azure"
+               Grid.Row="0" />
+
+        <!-- Row 1: Chord Type Picker and Root Note Picker -->
+        <Grid Grid.Row="1" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Chord Type Picker -->
+            <Picker Title="Chord Type:"
+                    ItemsSource="{Binding ChordTypes}"
+                    SelectedItem="{Binding SelectedChordType}"
+                    Grid.Column="0"
+                    FontSize="18" />
+
+            <!-- Root Note Picker -->
+            <Picker Title="Root Note:"
+                    ItemsSource="{Binding RootNotes}"
+                    SelectedItem="{Binding SelectedRootNote}"
+                    Grid.Column="1"
+                    FontSize="18" />
+        </Grid>
+
+        <!-- Row 2: Playback Type Picker and Instrument Picker -->
+        <Grid Grid.Row="2" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Playback Type Picker -->
+            <Picker Title="Playback Type:"
+                    ItemsSource="{Binding PlaybackTypes}"
+                    SelectedItem="{Binding SelectedPlaybackType}"
+                    Grid.Column="0"
+                    FontSize="18" />
+
+            <!-- Instrument Picker -->
+            <Picker Title="Instrument:"
+                    ItemsSource="{Binding InstrumentList}"
+                    SelectedItem="{Binding SelectedInstrument}"
+                    Grid.Column="1"
+                    FontSize="18" />
+        </Grid>
+
+        <StackLayout Spacing="20" Padding="10" Grid.Row="3">
+        <!-- Chord Name -->
+            <!-- Label for Chord -->
+            <Label Text="{Binding ChordName}"
+                   FontSize="20"
+                   HorizontalTextAlignment="Justify"
+                   VerticalOptions="End"
+                   TextColor="Azure" />
+
+            <!-- Chord Diagram -->
+            <Image Source="{Binding ChordImagePath}"
+                   Aspect="AspectFit"
+                   HeightRequest="150"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </StackLayout>
+
+        <!-- Detail Explanation -->
+        <StackLayout Spacing="20" Padding="10" Grid.Row="4">
+            <Label Text="Detail:"
+                   FontSize="18"
+                   HorizontalTextAlignment="Justify"
+                   VerticalOptions="End"
+                   TextColor="Azure"/>
+            <Label Text="{Binding Explanation}"
+                   FontSize="16"
+                   TextColor="Azure"
+                   LineBreakMode="WordWrap"
+                   HorizontalOptions="Center"
+                   Margin="0,5" />
+        </StackLayout>
+        
+        <!-- Generate Button -->
+        <StackLayout Spacing="20" Padding="10" Grid.Row="5">
+            <Button Text="Generate Chord"
+                    Command="{Binding GenerateChordCommand}"
+                    BackgroundColor="#2196F3"
+                    TextColor="Azure"
+                    FontSize="18"
+                    CornerRadius="20"
+                    HorizontalOptions="Fill" />
+                        <!-- Play Button -->
+            <Button Text="Play Chord"
+                    Command="{Binding PlayChordCommand}"
+                    BackgroundColor="#2196F3"
+                    TextColor="Azure"
+                    FontSize="18"
+                    CornerRadius="20"
+                    HorizontalOptions="Fill" />
+        </StackLayout>
+        
+    </Grid>
+</ContentPage>

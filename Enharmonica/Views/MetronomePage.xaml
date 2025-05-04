@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Enharmonica.Views"
+             x:Class="Enharmonica.Views.MetronomePage"
+             Title="Metronome">
+    <Grid Padding="20" RowSpacing="15" ColumnSpacing="10">
+        <!-- Define Rows -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Tempo Expression -->
+            <RowDefinition Height="*" />
+            <!-- Tempo Adjust Controls -->
+            <RowDefinition Height="*" />
+            <!-- Slider -->
+            <RowDefinition Height="Auto" />
+            <!-- Play and Stop Buttons -->
+        </Grid.RowDefinitions>
+        
+        <Label Text="{Binding TempoExpression}"
+               FontSize="60"
+               FontAttributes="Bold"
+               FontFamily="Times New Roman"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="Azure" />
+        
+        <!-- Tempo Adjust Controls -->
+        <Grid Grid.Row="1" ColumnSpacing="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <!-- Minus Button -->
+                <ColumnDefinition Width="*" />
+                <!-- Tempo Display -->
+                <ColumnDefinition Width="Auto" />
+                <!-- Plus Button -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Minus Button -->
+            <Button Text="–"
+                    Command="{Binding DecreaseTempoCommand}"
+                    FontSize="50"
+                    BackgroundColor="#FF9800"
+                    TextColor="Azure"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    WidthRequest="80"
+                    HeightRequest="80"
+                    CornerRadius="40"
+                    Grid.Column="0" />
+            
+            <!-- Tempo Display -->
+            <Label Text="{Binding SelectedTempo}"
+                   FontSize="100"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="#FF9800"
+                   Grid.Column="1" />
+
+            
+
+            <!-- Plus Button -->
+            <Button Text="+"
+                    Command="{Binding IncreaseTempoCommand}"
+                    FontSize="50"
+                    BackgroundColor="#FF9800"
+                    TextColor="Azure"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    WidthRequest="80"
+                    HeightRequest="80"
+                    CornerRadius="40"
+                    Grid.Column="2" />
+        </Grid>
+        <!-- Slider -->
+        <Slider Grid.Row="2"
+                Minimum="40"
+                Maximum="240"
+                Value="{Binding SelectedTempo, Mode=TwoWay}"
+                ThumbColor="#FF9800"
+                MinimumTrackColor="DarkGray"
+                MaximumTrackColor="LightGray"
+                WidthRequest="300"
+                HorizontalOptions="Center" />
+
+        <!-- Play and Stop Buttons -->
+        <StackLayout Grid.Row="3" 
+                     Orientation="Horizontal" 
+                     Spacing="30" 
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+            
+            <Button Text="{Binding PlayStatus}"
+                    Command="{Binding TogglePlayCommand}"
+                    FontSize="24"
+                    BackgroundColor="{Binding PlayButtonColor}"
+                    TextColor="Azure"
+                    WidthRequest="150"
+                    HeightRequest="80"
+                    CornerRadius="20"/>
+            <Button Text="Tap"
+                    Command="{Binding TapTempoCommand}"
+                    IsEnabled="{Binding IsNotPlaying}"
+                    BackgroundColor="#FF9800"
+                    TextColor="Azure"
+                    FontSize="24"
+                    WidthRequest="150"
+                    HeightRequest="80"
+                    CornerRadius="20" />   
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Enharmonica.Views.ScalesPage"
+             xmlns:local="clr-namespace:Enharmonica.Views"
+             Title="Scales">
+    <Grid Padding="20" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Label -->
+            <RowDefinition Height="Auto" />
+            <!-- Row 1 Pickers -->
+            <RowDefinition Height="Auto" />
+            <!-- Row 2 Pickers -->
+            <RowDefinition Height="*" />
+            <!-- Scale Type Label & Image -->
+            <RowDefinition Height="*" />
+            <!-- Explanation for details -->
+            <RowDefinition Height="Auto" />
+            <!-- Buttons -->
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <Label Text="Scale Generator"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="Azure"
+               Grid.Row="0" />
+
+        <!-- Row 1: Category Picker and Scale Type Picker -->
+        <Grid Grid.Row="1" ColumnSpacing="10" Margin="0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Picker Title="Category:"
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding SelectedCategory}"
+                    Grid.Column="0"
+                    FontSize="18" />
+
+            <!-- Scale Type Picker -->
+            <Picker Title="Scale Type:"
+                    ItemsSource="{Binding ScaleTypes}"
+                    SelectedItem="{Binding SelectedScaleType}"
+                    Grid.Column="1"
+                    FontSize="18" />
+        </Grid>
+        
+        <!-- Row 2: Root Notes Picker and Instrument Picker -->
+        <Grid Grid.Row="2" ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Root Notes Picker -->
+            <Picker Title="Key:"
+                    ItemsSource="{Binding RootNotes}"
+                    SelectedItem="{Binding SelectedRootNote}"
+                    Grid.Column="0"
+                    FontSize="18" />
+
+            <!-- Instrument Picker -->
+            <Picker Title="Instrument:"
+                    ItemsSource="{Binding InstrumentList}"
+                    SelectedItem="{Binding SelectedInstrument}"
+                    Grid.Column="1"
+                    FontSize="18" />
+        </Grid>
+
+        <!-- Scale Type Label and Image -->
+        <StackLayout Spacing="20" Padding="10" Grid.Row="3">
+            <Label Text="{Binding ScaleName}"
+                   FontSize="18"
+                   HorizontalTextAlignment="Justify"
+                   VerticalOptions="End"
+                   TextColor="Azure"/>
+            
+            <!-- Image Display -->
+            <Image Source="{Binding ScaleImagePath}"
+                   Aspect="AspectFit"
+                   HeightRequest="150"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </StackLayout>
+
+        <!-- Detail Explanation -->
+        <StackLayout Spacing="20" Padding="10" Grid.Row="4">
+            <Label Text="Detail:"
+                   FontSize="18"
+                   HorizontalTextAlignment="Justify"
+                   VerticalOptions="Start"
+                   TextColor="Azure"/>
+            <Label Text="{Binding Explanation}"
+                   FontSize="16"
+                   TextColor="Azure"
+                   LineBreakMode="WordWrap"
+                   HorizontalOptions="Center"/>
+        </StackLayout>
+        
+        <!-- Generate Button -->
+        <StackLayout Spacing="20" Padding="10" Grid.Row="5">
+            <Button Text="Display Scale"
+                Command="{Binding GenerateScaleCommand}"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                FontSize="18"
+                CornerRadius="20"
+                HorizontalOptions="Fill"/>
+        
+        <!-- Play Button -->
+            <Button Text="Play Scale"
+                    Command="{Binding PlayScaleCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="18"
+                    CornerRadius="20"
+                    HorizontalOptions="Fill"/>
+        </StackLayout>
+    </Grid>
+    
+    
+</ContentPage>
